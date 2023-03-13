@@ -1,3 +1,3 @@
 FROM registry.suse.com/bci/bci-base
-RUN bash -c 'echo Hello World!'
-CMD bash -c 'echo Hello again!'
+RUN /usr/bin/echo Hello World
+CMD /usr/bin/echo Hello again
