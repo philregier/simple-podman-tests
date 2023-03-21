@@ -1,2 +1,2 @@
 FROM registry.suse.com/bci/bci-base
-RUN zypper install -y gcc
+RUN zypper -q install -y gcc
