@@ -5,7 +5,8 @@ RUN useradd -m unpriv
 USER unpriv
 RUN mkdir ~/src
 WORKDIR ~/src
-RUN cd ~/src
 RUN git clone --depth 1 https://github.com/spack/spack.git
+RUN ls -l spack
+RUN pwd
 WORKDIR ~/src/spack
 RUN ls -l
