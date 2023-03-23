@@ -10,3 +10,4 @@ RUN ls -l spack
 RUN pwd
 WORKDIR ~/src/spack
 RUN ls -l
+RUN pwd
