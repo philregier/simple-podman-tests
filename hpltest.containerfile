@@ -1,6 +1,6 @@
 FROM registry.suse.com/bci/bci-base
-RUN zypper --gpg-auto-import-keys addrepo https://download.opensuse.org/repositories/network:/cluster/SLE_15_SP4/network:cluster.repo
-RUN zypper -q install -y gcc git
+RUN zypper addrepo https://download.opensuse.org/repositories/network:/cluster/SLE_15_SP4/network:cluster.repo
+RUN zypper --gpg-auto-import-keys -q install -y gcc git
 RUN useradd -m unpriv
 USER unpriv
 RUN mkdir ~/src
