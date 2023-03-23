@@ -11,3 +11,4 @@ RUN pwd
 WORKDIR ~/src/spack
 RUN ls -l
 RUN pwd
+RUN echo $USER $UID $HOME
