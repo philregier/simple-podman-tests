@@ -2,7 +2,7 @@ FROM registry.suse.com/bci/bci-base
 RUN zypper addrepo https://download.opensuse.org/repositories/network:/cluster/SLE_15_SP4/network:cluster.repo
 RUN zypper addrepo https://download.opensuse.org/repositories/science/SLE_15_SP4/science.repo
 # RUN zypper --gpg-auto-import-keys search libopenblas
-RUN zypper --gpg-auto-import-keys -q install --no-recommends -y gcc{,-fortran} git openmpi4{,-devel} libopenblas_openmp0 hwloc make
+RUN zypper --gpg-auto-import-keys -q install --no-recommends -y gcc{,-fortran} git openmpi4{,-devel} libopenblas-gnu-hpc-devel hwloc make
 RUN useradd -m unpriv
 USER unpriv
 RUN mkdir $HOME/src
@@ -11,3 +11,4 @@ RUN git clone --depth 1 https://github.com/spack/spack.git
 RUN pwd
 WORKDIR $HOME/src/spack
 RUN env
+RUN set | gawk '/ \()/{exit}{print}'
