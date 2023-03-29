@@ -12,10 +12,10 @@ RUN mpi-selector --set openmpi4
 RUN curl -O https://netlib.org/benchmark/hpl/hpl-2.3.tar.gz
 RUN tar xzf hpl-2.3.tar.gz
 WORKDIR ~/src/hpl-2.3/
-RUN sed "/^TOPdir/s:=.*:= $PWD:;
-         /^CC /s:=.*:= $(which mpicc):;
-         /^LINKER /s:=.*:= $(which mpif77):;
-         /^LAlib /s:=.*:= -L/usr/lib64/ -lopenblas:;
-         /^MPdir /s:=.*:= $MPI_HOME:;
+RUN sed "/^TOPdir/s:=.*:= $PWD:; \
+         /^CC /s:=.*:= $(which mpicc):; \
+         /^LINKER /s:=.*:= $(which mpif77):; \
+         /^LAlib /s:=.*:= -L/usr/lib64/ -lopenblas:; \
+         /^MPdir /s:=.*:= $MPI_HOME:; \
          /^MPlib /s:^:#:;" setup/Make.Linux_PII_CBLAS >Make.Linux_PII_CBLAS
 RUN make arch=Linux_PII_CBLAS
