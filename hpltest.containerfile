@@ -3,9 +3,6 @@ RUN zypper addrepo https://download.opensuse.org/repositories/network:/cluster/S
 RUN zypper addrepo https://download.opensuse.org/repositories/science/SLE_15_SP4/science.repo
 RUN zypper --gpg-auto-import-keys -q install --no-recommends -y gcc{,-fortran} git openmpi4{,-devel} libopenblas_openmp0 hwloc make tar strace
 RUN useradd -m unpriv
-RUN ls -ld /home/unpriv
-RUN chown unpriv:users /home/unpriv
-RUN ls -ld /home/unpriv
 USER unpriv
 RUN mkdir $HOME/src
 WORKDIR $HOME/src
