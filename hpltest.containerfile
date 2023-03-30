@@ -12,7 +12,8 @@ RUN mpi-selector --set openmpi4
 RUN curl -O https://netlib.org/benchmark/hpl/hpl-2.3.tar.gz
 RUN tar xzf hpl-2.3.tar.gz
 WORKDIR ~/src/hpl-2.3/
-RUN sed "/^TOPdir/s:=.*:= $PWD:; \
+RUN source /etc/profile.d/mpi-selector.sh; \
+    sed "/^TOPdir/s:=.*:= $PWD:; \
          /^CC /s:=.*:= $(which mpicc):; \
          /^LINKER /s:=.*:= $(which mpif77):; \
          /^LAlib /s:=.*:= -L/usr/lib64/ -lopenblas:; \
