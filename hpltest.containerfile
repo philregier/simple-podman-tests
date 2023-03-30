@@ -20,4 +20,4 @@ RUN source /etc/profile.d/mpi-selector.sh; \
          /^LAlib /s:=.*:= -L/usr/lib64/ -lopenblas:; \
          /^MPdir /s:=.*:= $MPI_HOME:; \
          /^MPlib /s:^:#:;" setup/Make.Linux_PII_CBLAS >Make.Linux_PII_CBLAS
-RUN make arch=Linux_PII_CBLAS
+RUN make arch=Linux_PII_CBLAS |& { head; echo ...; tail -n 20; }
