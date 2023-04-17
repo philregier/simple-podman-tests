@@ -4,9 +4,10 @@ RUN zypper addrepo https://download.opensuse.org/repositories/science/SLE_15_SP4
 RUN zypper --gpg-auto-import-keys -q install --no-recommends -y gcc{,-fortran} git \
       openmpi4{,-devel} libopenblas_openmp0 hwloc make tar strace python3
 RUN ln -s /usr/lib64/libopenblas.so{.0,}
-RUN useradd -m unpriv
-USER unpriv
 RUN mkdir -p /contents/src
+RUN useradd -m unpriv
+RUN chown -R unpriv /contents
+USER unpriv
 WORKDIR /contents/src
 RUN git clone --depth 1 https://github.com/spack/spack.git
 # WORKDIR /contents/src/spack
