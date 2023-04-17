@@ -10,3 +10,5 @@ WORKDIR $HOME/src
 RUN git clone --depth 1 https://github.com/spack/spack.git
 # WORKDIR $HOME/src/spack
 RUN mpi-selector --set openmpi4
+RUN spack -d install -v -j 16 openfoam@2012 %aocc@2.2.0 target=zen2 ^amdfftw@2.2 ^adios2~fortran ^cgal@4.13 ^openmpi@4.0.3
+CMD spack load openfoam@2012 %aocc@3.2.0
