@@ -16,7 +16,7 @@ RUN git clone --depth 1 https://github.com/spack/spack.git
 RUN mpi-selector --set openmpi4
 RUN /contents/src/spack/bin/spack external find
 # The following is an ugly hack and should not be used.
-RUN source /contents/python/bin/activate && yq -yi '.packages.libxml2.externals = [{"prefix":"/usr","spec":"libxml2@2.10.3"}]' /home/unpriv/.spack/packages.yaml
+RUN source /contents/python/bin/activate && VERSION="$(rpm -q libxml2-2 --qf %{VERSION})" && yq -yi '.packages.libxml2.externals = [{"prefix":"/usr","spec":"libxml2@$VERSION"}]' /home/unpriv/.spack/packages.yaml
 RUN /contents/src/spack/bin/spack install -v aocc@3.2.0 +license-agreed
 RUN cd $(/contents/src/spack/bin/spack location --install-dir aocc@3.2.0); /contents/src/spack/bin/spack compiler add $PWD
 RUN source /var/mpi-selector/data/openmpi4.sh; /contents/src/spack/bin/spack -d install -v -j 16 openfoam@2012 %aocc@3.2.0 target=zen2 ^amdfftw@2.2 ^adios2~fortran ^cgal@4.13 ^openmpi@4.0.3
