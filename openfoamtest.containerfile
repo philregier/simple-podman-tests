@@ -21,4 +21,5 @@ RUN source /contents/python/bin/activate && VERSION="$(rpm -q libxml2-2 --qf %{V
 RUN /contents/src/spack/bin/spack install -v aocc@3.2.0 +license-agreed
 RUN cd $(/contents/src/spack/bin/spack location --install-dir aocc@3.2.0); /contents/src/spack/bin/spack compiler add $PWD
 RUN source /var/mpi-selector/data/openmpi4.sh; /contents/src/spack/bin/spack install -j 16 openfoam@2012 %aocc@3.2.0 target=zen2 ^amdfftw@2.2 ^hwloc~libxml2 ^adios2~fortran ^cgal@4.13 # ^openmpi@4.0.3
-CMD /contents/src/spack/bin/spack load openfoam@2012 %aocc@3.2.0
+RUN wget https://github.com/philregier/simple-podman-tests/raw/main/openfoam-run.sh; chmod +x openfoam-run.sh
+CMD /contents/src/openfoam-run.sh
