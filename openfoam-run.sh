@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /contents/src
-/contents/src/spack/bin/spack load openfoam
+eval $(/contents/src/spack/bin/spack load --sh openfoam@2012 %aocc@3.2.0)
 wget http://openfoamwiki.net/images/6/62/Motorbike_bench_template.tar.gz
 
 tar -xzvf Motorbike_bench_template.tar.gz
