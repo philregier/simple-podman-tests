@@ -8,11 +8,13 @@ tar -xzvf Motorbike_bench_template.tar.gz
 cd $PWD/bench_template
 sed -i '/#include "streamLines"/c\ ' basecase/system/controlDict
 sed -i '/#include "wallBoundedStreamLines"/c\ ' basecase/system/controlDict
+sed -i '34s/40 16 16/80 32 32/' basecase/system/blockMeshDict
+
 unset FOAM_SIGFPE
 export FOAM_SIGFPE=false
 # Prepare cases
 which snappyHexMesh
-for i in 64 128 256; do
+for i in 48 96 192 384; do
   d=run_$i
   echo "Prepare case ${d}..."
   cp -r basecase $d
@@ -31,7 +33,7 @@ for i in 64 128 256; do
  cd ..
 done
 # Run cases
-for i in 64 128 256; do
+for i in 48 96 192 384; do
  echo "Run for ${i}..."
  cd run_$i
  if [ $i -eq 1 ]
