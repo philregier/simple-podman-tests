@@ -50,6 +50,6 @@ sed -i "s|mpirun -np ${i} --map-by hwthread -use-hwthread-cpus  snappyHexMesh -p
 done
 echo "# cores   Wall time (s):"
 echo "------------------------"
-for i in 64 128 256; do
+for i in 48 96 192 384; do
  echo $i `grep Execution run_${i}/log.simpleFoam | tail -n 1 | cut -d " " -f 3`
 done
