@@ -8,7 +8,7 @@ tar -xzvf Motorbike_bench_template.tar.gz
 cd $PWD/bench_template
 sed -i '/#include "streamLines"/c\ ' basecase/system/controlDict
 sed -i '/#include "wallBoundedStreamLines"/c\ ' basecase/system/controlDict
-sed -i '34s/40 16 16/80 32 32/' basecase/system/blockMeshDict
+sed -i '34s/40 16 16/40 32 32/' basecase/system/blockMeshDict
 
 unset FOAM_SIGFPE
 export FOAM_SIGFPE=false
