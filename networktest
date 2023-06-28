@@ -1,0 +1,9 @@
+FROM registry.opensuse.org/opensuse/leap:latest
+RUN zypper install strace iproute2 iputils
+RUN ip address || echo $?
+RUN ip link || echo $?
+RUN getent hosts scc.suse.com || echo $?
+RUN getent ahostsv6 scc.suse.com || echo $?
+RUN ping -c5 8.8.8.8 || echo $?
+RUN ping -c5 2a00:1450:4001:812::200e || echo $?
+CMD ip address; ip link; getent hosts scc.suse.com; getent ahostsv6 scc.suse.com; ping -c5 8.8.8.8; ping -c5 2a00:1450:4001:812::200e
