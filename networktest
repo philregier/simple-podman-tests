@@ -1,5 +1,5 @@
 FROM fedora:latest
-RUN yum -y install strace iproute2 iputils
+RUN yum -y install strace iproute iputils
 RUN ip address || echo $?
 RUN ip link || echo $?
 RUN getent hosts scc.suse.com || echo $?
