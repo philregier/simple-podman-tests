@@ -1,4 +1,6 @@
 FROM registry.opensuse.org/opensuse/leap:latest
+ENV GODEBUG=netdns=cgo
+RUN echo $GODEBUG
 RUN zypper -n install -y strace iproute2 iputils
 RUN ip address || echo $?
 RUN ip link || echo $?
